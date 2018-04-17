@@ -1,15 +1,21 @@
 import pandas as pd
 import sqlite3
 import sys
+import os
 
 
 def create_dataframe(arg1):
-    connection = sqlite3.connect(arg1)  # Conncting to the sqlite3 data base
-    df = pd.read_sql_query("""SELECT video_id, category_id,'us' AS language FROM USvideos UNION
-                              SELECT video_id, category_id,'ca' AS language FROM CAvideos UNION
-                              SELECT video_id, category_id,'de' AS language FROM DEvideos UNION
-                              SELECT video_id, category_id,'fr' AS language FROM FRvideos UNION
-                              SELECT video_id, category_id,'gb' AS language FROM GBvideos""", connection)
+
+    if not(os.path.exists(arg1)):
+        raise ValueError("Invalid Path ")
+    else:
+        connection = sqlite3.connect(arg1)  # Conncting to the sqlite3 data base
+        df = pd.read_sql_query("""SELECT video_id, category_id,'us' AS language FROM USvideos UNION
+                                SELECT video_id, category_id,'ca' AS language FROM CAvideos UNION
+                                SELECT video_id, category_id,'de' AS language FROM DEvideos UNION
+                                SELECT video_id, category_id,'fr' AS language FROM FRvideos UNION
+                                SELECT video_id, category_id,'gb' AS language FROM GBvideos""", connection)
+
     return df
 
 

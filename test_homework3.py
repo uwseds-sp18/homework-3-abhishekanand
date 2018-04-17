@@ -1,4 +1,5 @@
 import unittest
+import os 
 from homework3 import create_dataframe
 from homework3 import checkColumnName
 from homework3 import checkRowSize
@@ -17,7 +18,11 @@ class create_dataframe_test(unittest.TestCase):
     
     def test_checkKey(self):
         """Check Key """
-        self.assertFalse(checkKey(create_dataframe("class.db")))   
+        self.assertTrue(checkKey(create_dataframe("class.db")))   
+
+    def test_path(self):
+        """Check Path """
+        self.assertTrue(os.path.exists('./class.db')) 
 
 if __name__ == '__main__':
     unittest.main()
