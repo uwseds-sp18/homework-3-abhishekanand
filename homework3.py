@@ -31,8 +31,6 @@ def checkColumnName(df):
             return False
 
 # There are at least 10 rows in the DataFrame.
-
-
 def checkRowSize(df):
     Count_Row = df.shape[0]  # https://stackoverflow.com/a/35523946
     if(Count_Row >= 10):
